@@ -221,6 +221,71 @@
             transform: translateX(0);
         }
 
+        /* --- Optimized Marquee Layout & 3D Flip Mechanics --- */
+        .marquee-container {
+            mask-image: linear-gradient(to right, transparent, #000 15%, #000 85%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, #000 15%, #000 85%, transparent);
+        }
+
+        .animate-marquee-left {
+            animation: marqueeLeft 28s linear infinite;
+        }
+
+        .animate-marquee-right {
+            animation: marqueeRight 28s linear infinite;
+        }
+
+        /* Pause track jalan ketika salah satu area di-hover */
+        .marquee-container:hover .marquee-track {
+            animation-play-state: paused;
+        }
+
+        /* Mekanisme Hover & Auto-Enlarge Fleksibel */
+        .project-flip-card {
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), z-index 0s;
+            z-index: 1;
+        }
+
+        /* Saat di-hover, kartu utama membesar sedikit (scale) dan naik ke atas tumpukan layer z-index */
+        .project-flip-card:hover {
+            transform: scale(1.06);
+            z-index: 50; 
+        }
+
+        /* Trigger rotasi flip */
+        .project-flip-card:hover .project-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        /* Sisi belakang menggunakan min-height 100% dan overflow-y jika teks meluap parah */
+        .project-card-back {
+            min-height: 100%;
+            overflow-y: auto;
+            scrollbar-width: none; /* Sembunyikan scrollbar bawaan agar minimalis */
+        }
+        .project-card-back::-webkit-scrollbar {
+            width: 0px;
+        }
+
+        /* Kunci utama agar efek flip 3D tetap presisi di Chrome, Safari, dan Firefox */
+        .project-card-inner {
+            transform-style: preserve-3d;
+        }
+        .project-card-front, .project-card-back {
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+
+        @keyframes marqueeLeft {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        @keyframes marqueeRight {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+        }
+
         /* Interest Pill */
         .interest-pill {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);

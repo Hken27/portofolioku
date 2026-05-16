@@ -67,14 +67,14 @@ tailwind.config = {
     });
 
     // ===== HERO NAME ANIMATION =====
-    anime({
-        targets: '#heroName',
-        opacity: [0, 1],
-        translateY: [40, 0],
-        easing: 'easeOutExpo',
-        duration: 1400,
-        delay: 300
-    });
+    // anime({
+    //     targets: '#heroName',
+    //     opacity: [0, 1],
+    //     translateY: [40, 0],
+    //     easing: 'easeOutExpo',
+    //     duration: 1400,
+    //     delay: 300
+    // });
 
     // ===== SCROLL REVEAL ANIMATIONS =====
     const revealItems = document.querySelectorAll('.reveal-item');
@@ -189,5 +189,3 @@ tailwind.config = {
             heroSection.style.opacity = Math.max(0, opacity);
         }
     });
-
-
