@@ -8,774 +8,601 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">  
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">  
 </head>
-<body class="antialiased">
-    <!-- Grain Overlay -->
-    <div class="grain-overlay"></div>
+<body>
+    <div class="grain"></div>
 
-    <!-- Navigation -->
-    <nav id="navbar" class="glass-nav fixed top-0 left-0 right-0 z-50 transition-all duration-500">
-        <div class="max-w-6xl mx-auto px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16 lg:h-20">
-                <a href="#hero" class="font-serif text-lg font-semibold tracking-wide text-white hover:opacity-70 transition-opacity">
-                    MW<span class="text-surface-400">.</span>
-                </a>
-                <!-- Desktop Nav -->
-                <div class="hidden md:flex items-center gap-8">
-                    <a href="#about" class="nav-link text-sm font-light tracking-widest uppercase text-surface-400 hover:text-white transition-colors duration-300">About</a>
-                    <a href="#experience" class="nav-link text-sm font-light tracking-widest uppercase text-surface-400 hover:text-white transition-colors duration-300">Experience</a>
-                    <a href="#skills" class="nav-link text-sm font-light tracking-widest uppercase text-surface-400 hover:text-white transition-colors duration-300">Skills</a>
-                    <a href="#projects" class="nav-link text-sm font-light tracking-widest uppercase text-surface-400 hover:text-white transition-colors duration-300">Projects</a>
-                    <a href="#interests" class="nav-link text-sm font-light tracking-widest uppercase text-surface-400 hover:text-white transition-colors duration-300">Interests</a>
-                </div>
-                <!-- Mobile Menu Button -->
-                <button id="menuBtn" class="md:hidden text-white p-2" aria-label="Toggle menu">
-                    <i data-lucide="menu" class="w-5 h-5"></i>
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursorFollower"></div>
+
+    <nav id="navbar">
+        <div class="nav-inner">
+            <a href="#hero" class="nav-logo">MW<span>.</span></a>
+            <div class="nav-links">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#interests" class="nav-link">Interests</a>
+            </div>
+            <div style="display:flex;align-items:center;gap:1rem;">
+                <button class="hamburger" id="hamburger" aria-label="Menu">
+                    <span></span><span></span><span></span>
                 </button>
             </div>
         </div>
     </nav>
 
-    <!-- Mobile Menu -->
-    <div id="mobileMenu" class="mobile-menu fixed inset-0 z-50 bg-surface-950/98" style="backdrop-filter: blur(30px);">
-        <div class="flex flex-col items-center justify-center h-full gap-8">
-            <button id="closeMenuBtn" class="absolute top-5 right-6 text-white p-2" aria-label="Close menu">
-                <i data-lucide="x" class="w-6 h-6"></i>
-            </button>
-            <a href="#about" class="mobile-nav-link font-serif text-3xl text-surface-300 hover:text-white transition-colors">About</a>
-            <a href="#experience" class="mobile-nav-link font-serif text-3xl text-surface-300 hover:text-white transition-colors">Experience</a>
-            <a href="#skills" class="mobile-nav-link font-serif text-3xl text-surface-300 hover:text-white transition-colors">Skills</a>
-            <a href="#projects" class="mobile-nav-link font-serif text-3xl text-surface-300 hover:text-white transition-colors">Projects</a>
-            <a href="#interests" class="mobile-nav-link font-serif text-3xl text-surface-300 hover:text-white transition-colors">Interests</a>
-        </div>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#about" class="mobile-nav-link">About</a>
+        <a href="#experience" class="mobile-nav-link">Experience</a>
+        <a href="#skills" class="mobile-nav-link">Skills</a>
+        <a href="#projects" class="mobile-nav-link">Projects</a>
+        <a href="#interests" class="mobile-nav-link">Interests</a>
     </div>
 
-    <!-- Hero Section -->
-    <section id="hero" class="min-h-screen flex items-center justify-center relative px-6">
-        <div class="absolute inset-0 overflow-hidden">
-            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-white/[0.01] rounded-full blur-3xl"></div>
-            <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-white/[0.02] rounded-full blur-3xl"></div>
-        </div>
-        <div class="text-center relative z-10 max-w-5xl mx-auto">
+    <section id="hero">
+        <div class="hero-bg-grid"></div>
 
-            <h1 id="heroName" class="font-serif hero-name text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight leading-none text-white mb-6 float-animation">
-                MUHAMMAD<br>WAHYUDI
-            </h1>
-
-            <p class="reveal-item text-surface-400 font-light text-base sm:text-lg md:text-xl tracking-wide float-animation-delayed">
-                Junior IT Business Analyst <span class="mx-3 text-surface-600"></span> 
-            </p>
-            <div class="reveal-item mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="#about" class="btn-elegant inline-flex items-center gap-2 px-8 py-3.5 bg-white text-surface-950 text-sm font-medium tracking-wider uppercase rounded-none hover:bg-surface-200 transition-colors">
-                    Explore
-                    <i data-lucide="arrow-down" class="w-4 h-4"></i>
-                </a>
-                <a href="#projects" class="btn-elegant inline-flex items-center gap-2 px-8 py-3.5 border border-surface-700 text-surface-300 text-sm font-medium tracking-wider uppercase rounded-none hover:border-surface-400 hover:text-white transition-all">
-                    View Projects
-                </a>
-            </div>
-            <!-- Scroll indicator -->
-            <div class="reveal-item absolute bottom-8 left-1/2 -translate-x-1/2" id="scrollIndicator">
-                <div class="flex flex-col items-center gap-2 text-surface-600">
-                    <span class="text-[10px] tracking-[0.3em] uppercase">Scroll</span>
-                    <div class="w-px h-8 bg-gradient-to-b from-surface-500 to-transparent"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="py-24 md:py-32 px-6">
-        <div class="section-divider max-w-6xl mx-auto mb-24"></div>
-        <div class="max-w-6xl mx-auto">
-            <div class="grid md:grid-cols-12 gap-12 md:gap-16">
-                <div class="md:col-span-4">
-                    <span class="reveal-item text-xs font-medium tracking-[0.35em] uppercase text-surface-500 block mb-4">01</span>
-                    <h2 class="reveal-item font-serif text-4xl md:text-5xl font-bold text-white">About</h2>
-                </div>
-                <div class="md:col-span-8">
-                    <p class="reveal-item text-surface-300 text-lg md:text-xl leading-relaxed mb-8 font-light">
-                        Lulusan Sarjana Teknik Informatika <span class="text-white font-normal">Universitas Muhammadiyah Malang</span> dengan pengalaman praktis dalam implementasi sistem ERP dan CRM berbasis Laravel di sektor <span class="text-surface-500">Retail dan Supermarket</span>.
-                    </p>
-                    <p class="reveal-item text-surface-400 text-base leading-relaxed mb-8 font-light">
-                         Terlibat langsung dalam menerapkan siklus <span class="text-white">SDLC Agile</span>; Perantara komunikasi antara Tim <span class="text-white">Developer</span> dan <span class="text-white">User</span> sebagai pengguna akhir; <span class="text-white">Observasi alur bisnis</span> untuk kebutuhan pengguna; Melakukan User Acceptance Testing <span class="text-white">UAT</span> berupa Testing dan Pelatihan berbagai modul bisnis; <span class="text-white">Pemeliharaan dan penyelesaian</span> error atau bug pada sistem.                    
-                    </p>
-                    <div class="reveal-item flex flex-wrap gap-3">
-                        <span class="px-4 py-2 text-xs tracking-widest uppercase font-medium border border-surface-700 text-surface-400">Informatics Engineering</span>
-                        <span class="px-4 py-2 text-xs tracking-widest uppercase font-medium border border-surface-700 text-surface-400">IT Business Analyst</span>
-                        <span class="px-4 py-2 text-xs tracking-widest uppercase font-medium border border-surface-700 text-surface-400">System Analyst</span>
-                        <span class="px-4 py-2 text-xs tracking-widest uppercase font-medium border border-surface-700 text-surface-400">Project Management</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience" class="py-24 md:py-32 px-6">
-        <div class="section-divider max-w-6xl mx-auto mb-24"></div>
-        <div class="max-w-6xl mx-auto">
-            <div class="grid md:grid-cols-12 gap-12 md:gap-16">
-                <div class="md:col-span-4">
-                    <span class="reveal-item text-xs font-medium tracking-[0.35em] uppercase text-surface-500 block mb-4">02</span>
-                    <h2 class="reveal-item font-serif text-4xl md:text-5xl font-bold text-white">Core<br>Experience</h2>
-                </div>
-                <div class="md:col-span-8">
-                    <div class="timeline-line space-y-16">
-                        <!-- Experience 1 -->
-                        <div class="timeline-item reveal-item flex gap-6 group">
-                            <div class="flex flex-col items-center pt-1.5">
-                                <div class="timeline-dot"></div>
-                            </div>
-                            <div class="flex-1 pb-2">
-                                <span class="text-xs tracking-[0.3em] uppercase text-surface-500 font-medium">Dec 2025 - Feb 2026</span>
-                                <h3 class="font-serif text-2xl md:text-3xl text-white mt-2 mb-1">IT Business Analyst</h3>
-                                <p class="text-surface-400 text-sm font-light mb-6 tracking-wide">CV Satria Dharma Guna - Surabaya</p>
-                                <div class="space-y-4">
-                                    <div class="flex gap-3 items-start">
-                                        <i data-lucide="search" class="w-4 h-4 text-surface-500 mt-1 flex-shrink-0"></i>
-                                        <div>
-                                            <p class="text-white text-sm font-medium mb-0.5">Analisis Kebutuhan & SDLC</p>
-                                            <p class="text-surface-500 text-sm font-light">Observasi alur proses bisnis untuk diubah menjadi aplikasi pada modul gudang, administrasi, akuntansi, keuangan dan pembelian. </p>
-                                        </div>
-                                    </div>
-                                    <div class="flex gap-3 items-start">
-                                        <i data-lucide="shield-check" class="w-4 h-4 text-surface-500 mt-1 flex-shrink-0"></i>
-                                        <div>
-                                            <p class="text-white text-sm font-medium mb-0.5">Manajemen User Acceptance Testing UAT</p>
-                                            <p class="text-surface-500 text-sm font-light">Melakukan uji coba fitur dengan user pengguna akhir pada 5 modul bisnis.</p>
-                                        </div>
-                                    </div>
-                                    <div class="flex gap-3 items-start">
-                                        <i data-lucide="bug" class="w-4 h-4 text-surface-500 mt-1 flex-shrink-0"></i>
-                                        <div>
-                                            <p class="text-white text-sm font-medium mb-0.5">Optimalisasi & Pemeliharaan</p>
-                                            <p class="text-surface-500 text-sm font-light">memastikan kinerja aplikasi tetap stabil dalam operasional sehari-hari dalam 5 modul bisnis.</p>
-                                        </div>
-                                    </div>
-                                    <div class="flex gap-3 items-start">
-                                        <i data-lucide="layout" class="w-4 h-4 text-surface-500 mt-1 flex-shrink-0"></i>
-                                        <div>
-                                            <p class="text-white text-sm font-medium mb-0.5">Pengembangan fitur & UI/UX</p>
-                                            <p class="text-surface-500 text-sm font-light">Termasuk pembaruan fitur, optimalisasi standarisasi format invoice, dan tampilan menu untuk meningkatkan pengalaman pengguna pada 5 modul bisnis.</p>
-                                        </div>
-                                    </div>
-                                    <div class="flex gap-3 items-start">
-                                        <i data-lucide="flag" class="w-4 h-4 text-surface-500 mt-1 flex-shrink-0"></i>
-                                        <div>
-                                            <p class="text-white text-sm font-medium mb-0.5">Launching Program CRM</p>
-                                            <p class="text-surface-500 text-sm font-light">Pendampingan pada saat serah terima aplikasi.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Experience 2 -->
-                        <div class="timeline-item reveal-item flex gap-6 group">
-                            <div class="flex flex-col items-center pt-1.5">
-                                <div class="timeline-dot"></div>
-                            </div>
-                            <div class="flex-1 pb-2">
-                                <span class="text-xs tracking-[0.3em] uppercase text-surface-500 font-medium">Jul - Aug 2024</span>
-                                <h3 class="font-serif text-2xl md:text-3xl text-white mt-2 mb-1">Software Engineer</h3>
-                                <p class="text-surface-400 text-sm font-light mb-6 tracking-wide">PT Togamas Semesta Abadi - Malang</p>
-                                <div class="space-y-4">
-                                    <div class="flex gap-3 items-start">
-                                        <i data-lucide="message-square" class="w-4 h-4 text-surface-500 mt-1 flex-shrink-0"></i>
-                                        <div>
-                                            <p class="text-white text-sm font-medium mb-0.5">Software Engineering</p>
-                                            <p class="text-surface-500 text-sm font-light">Mendukung integrasi kebutuhan operasional dan solusi teknologi melalui Automation Message; dan Membuat/ Memelihara Website: Semilir, Inteligensiamedia, dan Edisimori.</p>
-                                        </div>
-                                    </div>
-                                    <div class="flex gap-3 items-start">
-                                        <i data-lucide="calendar-check" class="w-4 h-4 text-surface-500 mt-1 flex-shrink-0"></i>
-                                        <div>
-                                            <p class="text-white text-sm font-medium mb-0.5">Koordinator Proyek</p>
-                                            <p class="text-surface-500 text-sm font-light">Mengkoordinasikan kegiatan acara dan memastikan alur kerja berjalan dengan baik.</p>
-                                        </div>
-                                    </div>
-                                    <div class="flex gap-3 items-start">
-                                        <i data-lucide="zap" class="w-4 h-4 text-surface-500 mt-1 flex-shrink-0"></i>
-                                        <div>
-                                            <p class="text-white text-sm font-medium mb-0.5">Koordinator Proses Acara dan Laporan</p>
-                                            <p class="text-surface-500 text-sm font-light">Mengelola dan menyusun laporan operasional.</p>
-                                        </div>
-                                    </div>
-                                    <div class="flex gap-3 items-start">
-                                        <i data-lucide="share-2" class="w-4 h-4 text-surface-500 mt-1 flex-shrink-0"></i>
-                                        <div>
-                                            <p class="text-white text-sm font-medium mb-0.5">Social Media Management</p>
-                                            <p class="text-surface-500 text-sm font-light">Mengelola media sosial untuk meningkatkan brand awareness dan engagement perusahaan.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="py-24 md:py-32 px-6">
-        <div class="section-divider max-w-6xl mx-auto mb-24"></div>
-        <div class="max-w-6xl mx-auto">
-            <div class="grid md:grid-cols-12 gap-12 md:gap-16">
-                <div class="md:col-span-4">
-                    <span class="reveal-item text-xs font-medium tracking-[0.35em] uppercase text-surface-500 block mb-4">03</span>
-                    <h2 class="reveal-item font-serif text-4xl md:text-5xl font-bold text-white">Skills</h2>
-                </div>
-                <div class="md:col-span-8">
-                    <!-- Hard Skills -->
-                    <div class="mb-14">
-                        <h3 class="reveal-item text-xs tracking-[0.35em] uppercase text-surface-500 font-medium mb-6">Hard Skills</h3>
-                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4" id="hardSkills">
-                            
-                            <div class="skill-card reveal-item rounded-lg p-5 bg-white/[0.02] group">
-                                <i data-lucide="code-2" class="w-5 h-5 text-surface-400 mb-3 group-hover:text-white transition-colors"></i>
-                                <p class="text-white text-sm font-medium">PHP (Laravel) | Python</p>
-                                <p class="text-surface-600 text-xs mt-1">Programming</p>
-                            </div>
-                           
-                            <div class="skill-card reveal-item rounded-lg p-5 bg-white/[0.02] group">
-                                <i data-lucide="globe" class="w-5 h-5 text-surface-400 mb-3 group-hover:text-white transition-colors"></i>
-                                <p class="text-white text-sm font-medium">HTML5, CSS, JS, React.js</p>
-                                <p class="text-surface-600 text-xs mt-1">Frontend Development</p>
-                            </div>
-
-                            <div class="skill-card reveal-item rounded-lg p-5 bg-white/[0.02] group">
-                                <i data-lucide="git-branch" class="w-5 h-5 text-surface-400 mb-3 group-hover:text-white transition-colors"></i>
-                                <p class="text-white text-sm font-medium">SDLC | Agile | Business Process Mapping</p>
-                                <p class="text-surface-600 text-xs mt-1">Analysis & Design</p>
-                            </div>
-                            <div class="skill-card reveal-item rounded-lg p-5 bg-white/[0.02] group">
-                                <i data-lucide="layers" class="w-5 h-5 text-surface-400 mb-3 group-hover:text-white transition-colors"></i>
-                                <p class="text-white text-sm font-medium">Draw.io, Figma, Balsamiq</p>
-                                <p class="text-surface-600 text-xs mt-1">Wireframe Design</p>
-                            </div>
-
-                            <div class="skill-card reveal-item rounded-lg p-5 bg-white/[0.02] group">
-                                <i data-lucide="database" class="w-5 h-5 text-surface-400 mb-3 group-hover:text-white transition-colors"></i>
-                                <p class="text-white text-sm font-medium">MySQL</p>
-                                <p class="text-surface-600 text-xs mt-1">Database</p>
-                            </div>
-                            <div class="skill-card reveal-item rounded-lg p-5 bg-white/[0.02] group">
-                                <i data-lucide="bar-chart-3" class="w-5 h-5 text-surface-400 mb-3 group-hover:text-white transition-colors"></i>
-                                <p class="text-white text-sm font-medium">Tableau | Matplotlib | Seaborn</p>
-                                <p class="text-surface-600 text-xs mt-1">Visualization</p>
-                            </div>
-                            
-                            <div class="skill-card reveal-item rounded-lg p-5 bg-white/[0.02] group">
-                                <i data-lucide="layout" class="w-5 h-5 text-surface-400 mb-3 group-hover:text-white transition-colors"></i>
-                                <p class="text-white text-sm font-medium">ERP Software | Google Workspace | Microsoft Office 365</p>
-                                <p class="text-surface-600 text-xs mt-1">Productivity Tools</p>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <!-- Soft Skills -->
-                    <div class="mb-14">
-                        <h3 class="reveal-item text-xs tracking-[0.35em] uppercase text-surface-500 font-medium mb-6">Soft Skills & Competencies</h3>
-                        <div class="flex flex-wrap gap-3" id="softSkills">
-                            
-                            <div class="reveal-item interest-pill px-6 py-3 rounded-full bg-white/[0.02]">
-                                <div class="flex items-center gap-2">
-                                    <i data-lucide="shuffle" class="w-4 h-4 text-surface-500"></i>
-                                    <span class="text-surface-300 text-sm font-light">Adaptability</span>
-                                </div>
-                            </div>
-
-                            <div class="reveal-item interest-pill px-6 py-3 rounded-full bg-white/[0.02]">
-                                <div class="flex items-center gap-2">
-                                    <i data-lucide="brain" class="w-4 h-4 text-surface-500"></i>
-                                    <span class="text-surface-300 text-sm font-light">Analytical Thinking</span>
-                                </div>
-                            </div>
-
-                            <div class="reveal-item interest-pill px-6 py-3 rounded-full bg-white/[0.02]">
-                                <div class="flex items-center gap-2">
-                                    <i data-lucide="git-commit" class="w-4 h-4 text-surface-500"></i>
-                                    <span class="text-surface-300 text-sm font-light">Application Lifecycle Management</span>
-                                </div>
-                            </div>
-
-                            <div class="reveal-item interest-pill px-6 py-3 rounded-full bg-white/[0.02]">
-                                <div class="flex items-center gap-2">
-                                    <i data-lucide="git-branch" class="w-4 h-4 text-surface-500"></i>
-                                    <span class="text-surface-300 text-sm font-light">Business Process Mapping</span>
-                                </div>
-                            </div>
-
-                            <div class="reveal-item interest-pill px-6 py-3 rounded-full bg-white/[0.02]">
-                                <div class="flex items-center gap-2">
-                                    <i data-lucide="clipboard-list" class="w-4 h-4 text-surface-500"></i>
-                                    <span class="text-surface-300 text-sm font-light">Business Requirements</span>
-                                </div>
-                            </div>
-
-                            <div class="reveal-item interest-pill px-6 py-3 rounded-full bg-white/[0.02]">
-                                <div class="flex items-center gap-2">
-                                    <i data-lucide="message-square" class="w-4 h-4 text-surface-500"></i>
-                                    <span class="text-surface-300 text-sm font-light">Communication</span>
-                                </div>
-                            </div>
-
-                            <div class="reveal-item interest-pill px-6 py-3 rounded-full bg-white/[0.02]">
-                                <div class="flex items-center gap-2">
-                                    <i data-lucide="lightbulb" class="w-4 h-4 text-surface-500"></i>
-                                    <span class="text-surface-300 text-sm font-light">Problem Solving</span>
-                                </div>
-                            </div>
-
-                            <div class="reveal-item interest-pill px-6 py-3 rounded-full bg-white/[0.02]">
-                                <div class="flex items-center gap-2">
-                                    <i data-lucide="briefcase" class="w-4 h-4 text-surface-500"></i>
-                                    <span class="text-surface-300 text-sm font-light">Project Management</span>
-                                </div>
-                            </div>
-
-                            <div class="reveal-item interest-pill px-6 py-3 rounded-full bg-white/[0.02]">
-                                <div class="flex items-center gap-2">
-                                    <i data-lucide="users" class="w-4 h-4 text-surface-500"></i>
-                                    <span class="text-surface-300 text-sm font-light">Stakeholder Management</span>
-                                </div>
-                            </div>
-
-                            <div class="reveal-item interest-pill px-6 py-3 rounded-full bg-white/[0.02]">
-                                <div class="flex items-center gap-2">
-                                    <i data-lucide="handshake" class="w-4 h-4 text-surface-500"></i>
-                                    <span class="text-surface-300 text-sm font-light">Teamwork & Collaboration</span>
-                                </div>
-                            </div>
-
-                            <div class="reveal-item interest-pill px-6 py-3 rounded-full bg-white/[0.02]">
-                                <div class="flex items-center gap-2">
-                                    <i data-lucide="clock" class="w-4 h-4 text-surface-500"></i>
-                                    <span class="text-surface-300 text-sm font-light">Time Management</span>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- Projects -->
-    <section id="projects" class="py-24 md:py-32 overflow-hidden">
-        <div class="section-divider max-w-6xl mx-auto mb-24 px-6"></div>
-        
-        <div class="max-w-6xl mx-auto px-6 mb-12">
-            <span class="reveal-item text-xs font-medium tracking-[0.35em] uppercase text-surface-500 block mb-4">04</span>
-            <h2 class="reveal-item font-serif text-4xl md:text-5xl font-bold text-white">Projects</h2>
+        <div class="hero-social-strip" style="display: flex; flex-direction: column; align-items: center; gap: 1.5rem;">
+            <div class="hero-social-line"></div>
+            <a href="mailto:mmmdwahyudi@gmail.com" aria-label="Email" title="Email"><i class="fa-solid fa-envelope"></i></a>
+            <a href="https://www.linkedin.com/in/muhammad-wahyudi-b59429269/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://github.com/Hken27/" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub"><i class="fa-brands fa-github"></i></a>
+            <div class="hero-social-line"></div>
         </div>
 
-        <div class="marquee-container mb-6 flex whitespace-nowrap w-full">
-            <div class="marquee-track flex gap-6 animate-marquee-left">
-                
-                <div class="project-flip-card shrink-0 w-[240px] h-[280px] [perspective:1000px] inline-block whitespace-normal">
-                    <div class="project-card-inner relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] hover:[transform:rotateY(180deg)]">
-                        <div class="project-card-front absolute inset-0 w-full h-full p-6 rounded-lg bg-white/[0.02] border border-white/[0.05] flex flex-col justify-between [backface-visibility:hidden]">
-                            <div>
-                                <div class="flex justify-between items-start mb-4">
-                                    <span class="text-[9px] tracking-[0.2em] uppercase text-surface-500 font-medium">Projek Tugas Akhir Semester</span>
-                                    <i data-lucide="image" class="w-4 h-4 text-surface-400"></i>
-                                </div>
-                                <h3 class="font-serif text-lg text-white tracking-wide">Image Classification</h3>
-                            </div>
-                            <div class="flex flex-wrap gap-1 mt-auto">
-                                <span class="px-2 py-0.5 text-[8px] tracking-wider uppercase bg-white/[0.04] text-surface-400 rounded">NLP</span>
-                                <span class="px-2 py-0.5 text-[8px] tracking-wider uppercase bg-white/[0.04] text-surface-400 rounded">Machine Learning</span>
-                                <span class="px-2 py-0.5 text-[8px] tracking-wider uppercase bg-white/[0.04] text-surface-400 rounded">Computer Vision</span>
-                                <span class="px-2 py-0.5 text-[8px] tracking-wider uppercase bg-white/[0.04] text-surface-400 rounded">Kaggle</span>
-                                <span class="px-2 py-0.5 text-[8px] tracking-wider uppercase bg-white/[0.04] text-surface-400 rounded">Streamlit</span>
-                            </div>
-                        </div>
-                        <div class="project-card-back absolute inset-0 w-full h-full p-6 rounded-lg bg-surface-900 border border-white/[0.1] flex flex-col justify-between [transform:rotateY(180deg)] [backface-visibility:hidden]">
-                            <p class="text-surface-300 text-xs font-light leading-relaxed">Proyek ini bertujuan untuk melakukan klasifikasi bungkus biskuit menggunakan model deep learning dengan pendekatan Convolutional Neural Network (CNN) dan MobileNet. Dataset yang digunakan berasal dari Kaggle, dan hasil akhir model dapat diintegrasikan ke dalam antarmuka pengguna berbasis Streamlit.</p>
-                            <a href="https://github.com/Hken27/image-classification" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 w-full py-2 border border-white/20 text-white text-[10px] uppercase tracking-wider hover:bg-white hover:text-surface-950 transition-all"><i class="fa-brands fa-github"></i> Github</a>
-                        </div>
-                    </div>
-                </div>
+        <div class="hero-year">Available 2025 ↕</div>
 
-                <div class="project-flip-card shrink-0 w-[240px] h-[280px] [perspective:1000px] inline-block whitespace-normal">
-                    <div class="project-card-inner relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] hover:[transform:rotateY(180deg)]">
-                        <div class="project-card-front absolute inset-0 w-full h-full p-6 rounded-lg bg-white/[0.02] border border-white/[0.05] flex flex-col justify-between [backface-visibility:hidden]">
-                            <div>
-                                <div class="flex justify-between items-start mb-4">
-                                    <span class="text-[9px] tracking-[0.2em] uppercase text-surface-500 font-medium">Projek Tugas Akhir Semester</span>
-                                    <i data-lucide="smartphone" class="w-4 h-4 text-surface-400"></i>
-                                </div>
-                                <h3 class="font-serif text-lg text-white tracking-wide">Mobile Event Organizer</h3>
-                            </div>
-                            <div class="flex flex-wrap gap-1 mt-auto">
-                                <span class="px-2 py-0.5 text-[8px] tracking-wider uppercase bg-white/[0.04] text-surface-400 rounded">Android</span>
-                                <span class="px-2 py-0.5 text-[8px] tracking-wider uppercase bg-white/[0.04] text-surface-400 rounded">Flutter</span>
-                                <span class="px-2 py-0.5 text-[8px] tracking-wider uppercase bg-white/[0.04] text-surface-400 rounded">Dart</span>
-                            </div>
-                        </div>
-                        <div class="project-card-back absolute inset-0 w-full h-full p-6 rounded-lg bg-surface-900 border border-white/[0.1] flex flex-col justify-between [transform:rotateY(180deg)] [backface-visibility:hidden]">
-                            <p class="text-surface-300 text-xs font-light leading-relaxed">EC4EVA adalah aplikasi Flutter yang dirancang untuk menghadirkan pengalaman unik bagi pecinta musik dan penggemar grup band Endless Chain. Aplikasi ini memungkinkan pengguna untuk tetap terhubung dengan dunia musik melalui informasi lengkap tentang event musik, koleksi merchandise eksklusif, serta fitur pembelian dan reservasi yang mudah.</p>
-                            <a href="https://github.com/Hken27/ec4eva/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 w-full py-2 border border-white/20 text-white text-[10px] uppercase tracking-wider hover:bg-white hover:text-surface-950 transition-all"><i class="fa-brands fa-github"></i> Github</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-flip-card shrink-0 w-[240px] h-[280px] [perspective:1000px] inline-block whitespace-normal">
-                    <div class="project-card-inner relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] hover:[transform:rotateY(180deg)]">
-                        <div class="project-card-front absolute inset-0 w-full h-full p-6 rounded-lg bg-white/[0.02] border border-white/[0.05] flex flex-col justify-between [backface-visibility:hidden]">
-                            <div>
-                                <div class="flex justify-between items-start mb-4">
-                                    <span class="text-[9px] tracking-[0.2em] uppercase text-surface-500 font-medium">Projek Tugas Akhir Semester</span>
-                                    <i data-lucide="globe" class="w-4 h-4 text-surface-400"></i>
-                                </div>
-                                <h3 class="font-serif text-lg text-white tracking-wide">Web Application Portfolio</h3>
-                            </div>
-                            <div class="flex flex-wrap gap-1 mt-auto">
-                                <span class="px-2 py-0.5 text-[8px] tracking-wider uppercase bg-white/[0.04] text-surface-400 rounded">HTML</span>
-                                <span class="px-2 py-0.5 text-[8px] tracking-wider uppercase bg-white/[0.04] text-surface-400 rounded">CSS</span>
-                                <span class="px-2 py-0.5 text-[8px] tracking-wider uppercase bg-white/[0.04] text-surface-400 rounded">JavaScript</span>
-                            </div>
-                        </div>
-                        <div class="project-card-back absolute inset-0 w-full h-full p-6 rounded-lg bg-surface-900 border border-white/[0.1] flex flex-col justify-between [transform:rotateY(180deg)] [backface-visibility:hidden]">
-                            <p class="text-surface-300 text-xs font-light leading-relaxed">Portofolio profesional yang dirancang untuk menampilkan berbagai proyek studio kreatif dan layanan pengembangan serta maintenance program. Website ini menyatukan tampilan visual yang modern dengan informasi yang lengkap, cocok untuk pelaku industri kreatif dan teknologi.</p>
-                            <a href="https://hken27.github.io/studiosuckss/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 w-full py-2 border border-white/20 text-white text-[10px] uppercase tracking-wider hover:bg-white hover:text-surface-950 transition-all"><i class="fa-brands fa-github"></i> Github</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-flip-card shrink-0 w-[240px] h-[280px] [perspective:1000px] inline-block whitespace-normal">
-                    <div class="project-card-inner relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] hover:[transform:rotateY(180deg)]">
-                        <div class="project-card-front absolute inset-0 w-full h-full p-6 rounded-lg bg-white/[0.02] border border-white/[0.05] flex flex-col justify-between [backface-visibility:hidden]">
-                            <div>
-                                <div class="flex justify-between items-start mb-4">
-                                    <span class="text-[9px] tracking-[0.2em] uppercase text-surface-500 font-medium">Projek Tugas Akhir Semester</span>
-                                    <i data-lucide="bar-chart-3" class="w-4 h-4 text-surface-400"></i>
-                                </div>
-                                <h3 class="font-serif text-lg text-white tracking-wide">Spotify Data Analysis</h3>
-                            </div>
-                            <div class="flex flex-wrap gap-1 mt-auto">
-                                <span class="px-2 py-0.5 text-[8px] tracking-wider uppercase bg-white/[0.04] text-surface-400 rounded">Data Analyst</span>
-                                <span class="px-2 py-0.5 text-[8px] tracking-wider uppercase bg-white/[0.04] text-surface-400 rounded">Python</span>
-                                <span class="px-2 py-0.5 text-[8px] tracking-wider uppercase bg-white/[0.04] text-surface-400 rounded">Kaggle</span>
-                            </div>
-                        </div>
-                        <div class="project-card-back absolute inset-0 w-full h-full p-6 rounded-lg bg-surface-900 border border-white/[0.1] flex flex-col justify-between [transform:rotateY(180deg)] [backface-visibility:hidden]">
-                            <p class="text-surface-300 text-xs font-light leading-relaxed">Spotify menghadapi tantangan dalam mempertahankan engagement pengguna akibat kesulitan memberikan rekomendasi musik yang tepat sesuai preferensi individu. Masalah ini penting karena pengalaman mendengarkan yang personal dan relevan dapat meningkatkan loyalitas pengguna serta memaksimalkan waktu yang dihabiskan di platform. Dengan demikian, analisis data ini bertujuan untuk memberikan wawasan yang mendalam terkait preferensi musik pengguna.</p>
-                            <a href="https://github.com/Hken27/Analisis-Data-Spotify/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 w-full py-2 border border-white/20 text-white text-[10px] uppercase tracking-wider hover:bg-white hover:text-surface-950 transition-all"><i class="fa-brands fa-github"></i> Github</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-flip-card shrink-0 w-[240px] h-[280px] [perspective:1000px] inline-block whitespace-normal">
-                    <div class="project-card-inner relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] hover:[transform:rotateY(180deg)]">
-                        <div class="project-card-front absolute inset-0 w-full h-full p-6 rounded-lg bg-white/[0.02] border border-white/[0.05] flex flex-col justify-between [backface-visibility:hidden]">
-                            <div>
-                                <div class="flex justify-between items-start mb-4">
-                                    <span class="text-[9px] tracking-[0.2em] uppercase text-surface-500 font-medium">Mini Projek</span>
-                                    <i data-lucide="bot" class="w-4 h-4 text-surface-400"></i>
-                                </div>
-                                <h3 class="font-serif text-lg text-white tracking-wide">RAG Chatbot</h3>
-                            </div>
-                            <div class="flex flex-wrap gap-1 mt-auto">
-                                <span class="px-2 py-0.5 text-[8px] tracking-wider uppercase bg-white/[0.04] text-surface-400 rounded">Dataset</span>
-                                <span class="px-2 py-0.5 text-[8px] tracking-wider uppercase bg-white/[0.04] text-surface-400 rounded">Gemini LLM</span>
-                                <span class="px-2 py-0.5 text-[8px] tracking-wider uppercase bg-white/[0.04] text-surface-400 rounded">Python</span>
-                                <span class="px-2 py-0.5 text-[8px] tracking-wider uppercase bg-white/[0.04] text-surface-400 rounded">RAG</span>
-                                <span class="px-2 py-0.5 text-[8px] tracking-wider uppercase bg-white/[0.04] text-surface-400 rounded">LangChain</span>
-                            </div>
-                        </div>
-                        <div class="project-card-back absolute inset-0 w-full h-full p-6 rounded-lg bg-surface-900 border border-white/[0.1] flex flex-col justify-between [transform:rotateY(180deg)] [backface-visibility:hidden]">
-                            <p class="text-surface-300 text-xs font-light leading-relaxed">Chatbot yang memberikan jawaban akurat seputar sertifikasi halal dengan merujuk langsung pada dokumen regulasi resmi BPJPH untuk menghindari kesalahan informasi.</p>
-                            <a href="https://github.com/Hken27/RAG" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 w-full py-2 border border-white/20 text-white text-[10px] uppercase tracking-wider hover:bg-white hover:text-surface-950 transition-all"><i class="fa-brands fa-github"></i> Github</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-flip-card shrink-0 w-[240px] h-[280px] [perspective:1000px] inline-block whitespace-normal">
-                    <div class="project-card-inner relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] hover:[transform:rotateY(180deg)]">
-                        <div class="project-card-front absolute inset-0 w-full h-full p-6 rounded-lg bg-white/[0.02] border border-white/[0.05] flex flex-col justify-between [backface-visibility:hidden]">
-                            <div>
-                                <div class="flex justify-between items-start mb-4">
-                                    <span class="text-[9px] tracking-[0.2em] uppercase text-surface-500 font-medium">ERP - CRM</span>
-                                    <i data-lucide="layout-dashboard" class="w-4 h-4 text-surface-400"></i>
-                                </div>
-                                <h3 class="font-serif text-lg text-white tracking-wide">ERP | CRM</h3>
-                            </div>
-                            <div class="flex flex-wrap gap-1 mt-auto">
-                                <span class="px-2 py-0.5 text-[8px] tracking-wider uppercase bg-white/[0.04] text-surface-400 rounded">ERP</span>
-                                <span class="px-2 py-0.5 text-[8px] tracking-wider uppercase bg-white/[0.04] text-surface-400 rounded">CRM</span>
-                                <span class="px-2 py-0.5 text-[8px] tracking-wider uppercase bg-white/[0.04] text-surface-400 rounded">MySQL</span>
-                                <span class="px-2 py-0.5 text-[8px] tracking-wider uppercase bg-white/[0.04] text-surface-400 rounded">Laravel</span>
-                                <span class="px-2 py-0.5 text-[8px] tracking-wider uppercase bg-white/[0.04] text-surface-400 rounded">JasperReport</span>
-                            </div>
-                        </div>
-                        <div class="project-card-back absolute inset-0 w-full h-full p-6 rounded-lg bg-surface-900 border border-white/[0.1] flex flex-col justify-between [transform:rotateY(180deg)] [backface-visibility:hidden]">
-                            <p class="text-surface-300 text-xs font-light leading-relaxed">Implementasi sistem manajemen enterprise terintegrasi untuk menangani modul utama, mencakup: Gudang, Penjualan, Pembelian, Akuntansi, Keuangan dan Administrasi di industri ritel dan supermarket.</p>
-                            <a href="https://github.com/Hken27/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 w-full py-2 border border-white/20 text-w
-                            hite text-[10px] uppercase tracking-wider hover:bg-white hover:text-surface-950 transition-all"><i class="fa-brands fa-github"></i> Github</a>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="project-flip-card shrink-0 w-[240px] h-[280px] [perspective:1000px] inline-block whitespace-normal">
-                    <div class="project-card-inner relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] hover:[transform:rotateY(180deg)]">
-                        <div class="project-card-front absolute inset-0 w-full h-full p-6 rounded-lg bg-white/[0.02] border border-white/[0.05] flex flex-col justify-between [backface-visibility:hidden]">
-                            <div>
-                                <div class="flex justify-between items-start mb-4">
-                                    <span class="text-[9px] tracking-[0.2em] uppercase text-surface-500 font-medium">Projek Tugas Akhir Semester</span>
-                                    <i data-lucide="image" class="w-4 h-4 text-surface-400"></i>
-                                </div>
-                                <h3 class="font-serif text-lg text-white tracking-wide">Image Classification</h3>
-                            </div>
-                            <div class="flex flex-wrap gap-1 mt-auto">
-                                <span class="px-2 py-0.5 text-[8px] tracking-wider uppercase bg-white/[0.04] text-surface-400 rounded">NLP</span>
-                                <span class="px-2 py-0.5 text-[8px] tracking-wider uppercase bg-white/[0.04] text-surface-400 rounded">Machine Learning</span>
-                                <span class="px-2 py-0.5 text-[8px] tracking-wider uppercase bg-white/[0.04] text-surface-400 rounded">Computer Vision</span>
-                                <span class="px-2 py-0.5 text-[8px] tracking-wider uppercase bg-white/[0.04] text-surface-400 rounded">Kaggle</span>
-                                <span class="px-2 py-0.5 text-[8px] tracking-wider uppercase bg-white/[0.04] text-surface-400 rounded">Streamlit</span>
-                            </div>
-                        </div>
-                        <div class="project-card-back absolute inset-0 w-full h-full p-6 rounded-lg bg-surface-900 border border-white/[0.1] flex flex-col justify-between [transform:rotateY(180deg)] [backface-visibility:hidden]">
-                            <p class="text-surface-300 text-xs font-light leading-relaxed">Proyek klasifikasi citra menggunakan teknik deep learning dan computer vision untuk mengkategorikan gambar secara otomatis.</p>
-                            <a href="https://github.com/Hken27/image-classification/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 w-full py-2 border border-white/20 text-white text-[10px] uppercase tracking-wider hover:bg-white hover:text-surface-950 transition-all"><i class="fa-brands fa-github"></i> Github</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-flip-card shrink-0 w-[240px] h-[280px] [perspective:1000px] inline-block whitespace-normal">
-                    <div class="project-card-inner relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] hover:[transform:rotateY(180deg)]">
-                        <div class="project-card-front absolute inset-0 w-full h-full p-6 rounded-lg bg-white/[0.02] border border-white/[0.05] flex flex-col justify-between [backface-visibility:hidden]">
-                            <div>
-                                <div class="flex justify-between items-start mb-4">
-                                    <span class="text-[9px] tracking-[0.2em] uppercase text-surface-500 font-medium">Projek Tugas Akhir Semester</span>
-                                    <i data-lucide="smartphone" class="w-4 h-4 text-surface-400"></i>
-                                </div>
-                                <h3 class="font-serif text-lg text-white tracking-wide">Mobile Event Organizer</h3>
-                            </div>
-                            <div class="flex flex-wrap gap-1 mt-auto">
-                                <span class="px-2 py-0.5 text-[8px] tracking-wider uppercase bg-white/[0.04] text-surface-400 rounded">Android</span>
-                                <span class="px-2 py-0.5 text-[8px] tracking-wider uppercase bg-white/[0.04] text-surface-400 rounded">Flutter</span>
-                                <span class="px-2 py-0.5 text-[8px] tracking-wider uppercase bg-white/[0.04] text-surface-400 rounded">Dart</span>
-                            </div>
-                        </div>
-                        <div class="project-card-back absolute inset-0 w-full h-full p-6 rounded-lg bg-surface-900 border border-white/[0.1] flex flex-col justify-between [transform:rotateY(180deg)] [backface-visibility:hidden]">
-                            <p class="text-surface-300 text-xs font-light leading-relaxed">EC4EVA adalah aplikasi Flutter yang dirancang untuk menghadirkan pengalaman unik bagi pecinta musik dan penggemar grup band Endless Chain. Aplikasi ini memungkinkan pengguna untuk tetap terhubung dengan dunia musik melalui informasi lengkap tentang event musik, koleksi merchandise eksklusif, serta fitur pembelian dan reservasi yang mudah.</p>
-                            <a href="https://github.com/Hken27/ec4eva/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 w-full py-2 border border-white/20 text-white text-[10px] uppercase tracking-wider hover:bg-white hover:text-surface-950 transition-all"><i class="fa-brands fa-github"></i> Github</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-flip-card shrink-0 w-[240px] h-[280px] [perspective:1000px] inline-block whitespace-normal">
-                    <div class="project-card-inner relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] hover:[transform:rotateY(180deg)]">
-                        <div class="project-card-front absolute inset-0 w-full h-full p-6 rounded-lg bg-white/[0.02] border border-white/[0.05] flex flex-col justify-between [backface-visibility:hidden]">
-                            <div>
-                                <div class="flex justify-between items-start mb-4">
-                                    <span class="text-[9px] tracking-[0.2em] uppercase text-surface-500 font-medium">Projek Tugas Akhir Semester</span>
-                                    <i data-lucide="globe" class="w-4 h-4 text-surface-400"></i>
-                                </div>
-                                <h3 class="font-serif text-lg text-white tracking-wide">Web Application Portfolio</h3>
-                            </div>
-                            <div class="flex flex-wrap gap-1 mt-auto">
-                                <span class="px-2 py-0.5 text-[8px] tracking-wider uppercase bg-white/[0.04] text-surface-400 rounded">HTML</span>
-                                <span class="px-2 py-0.5 text-[8px] tracking-wider uppercase bg-white/[0.04] text-surface-400 rounded">CSS</span>
-                                <span class="px-2 py-0.5 text-[8px] tracking-wider uppercase bg-white/[0.04] text-surface-400 rounded">JavaScript</span>
-                            </div>
-                        </div>
-                        <div class="project-card-back absolute inset-0 w-full h-full p-6 rounded-lg bg-surface-900 border border-white/[0.1] flex flex-col justify-between [transform:rotateY(180deg)] [backface-visibility:hidden]">
-                            <p class="text-surface-300 text-xs font-light leading-relaxed">Portofolio profesional yang dirancang untuk menampilkan berbagai proyek studio kreatif dan layanan pengembangan serta maintenance program. Website ini menyatukan tampilan visual yang modern dengan informasi yang lengkap, cocok untuk pelaku industri kreatif dan teknologi.</p>
-                            <a href="https://hken27.github.io/studiosuckss/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 w-full py-2 border border-white/20 text-white text-[10px] uppercase tracking-wider hover:bg-white hover:text-surface-950 transition-all"><i class="fa-brands fa-github"></i> Github</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-flip-card shrink-0 w-[240px] h-[280px] [perspective:1000px] inline-block whitespace-normal">
-                    <div class="project-card-inner relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] hover:[transform:rotateY(180deg)]">
-                        <div class="project-card-front absolute inset-0 w-full h-full p-6 rounded-lg bg-white/[0.02] border border-white/[0.05] flex flex-col justify-between [backface-visibility:hidden]">
-                            <div>
-                                <div class="flex justify-between items-start mb-4">
-                                    <span class="text-[9px] tracking-[0.2em] uppercase text-surface-500 font-medium">Projek Tugas Akhir Semester</span>
-                                    <i data-lucide="bar-chart-3" class="w-4 h-4 text-surface-400"></i>
-                                </div>
-                                <h3 class="font-serif text-lg text-white tracking-wide">Spotify Data Analysis</h3>
-                            </div>
-                            <div class="flex flex-wrap gap-1 mt-auto">
-                                <span class="px-2 py-0.5 text-[8px] tracking-wider uppercase bg-white/[0.04] text-surface-400 rounded">Data Analyst</span>
-                                <span class="px-2 py-0.5 text-[8px] tracking-wider uppercase bg-white/[0.04] text-surface-400 rounded">Python</span>
-                                <span class="px-2 py-0.5 text-[8px] tracking-wider uppercase bg-white/[0.04] text-surface-400 rounded">Kaggle</span>
-                            </div>
-                        </div>
-                        <div class="project-card-back absolute inset-0 w-full h-full p-6 rounded-lg bg-surface-900 border border-white/[0.1] flex flex-col justify-between [transform:rotateY(180deg)] [backface-visibility:hidden]">
-                            <p class="text-surface-300 text-xs font-light leading-relaxed">Spotify menghadapi tantangan dalam mempertahankan engagement pengguna akibat kesulitan memberikan rekomendasi musik yang tepat sesuai preferensi individu. Masalah ini penting karena pengalaman mendengarkan yang personal dan relevan dapat meningkatkan loyalitas pengguna serta memaksimalkan waktu yang dihabiskan di platform. Dengan demikian, analisis data ini bertujuan untuk memberikan wawasan yang mendalam terkait preferensi musik pengguna.</p>
-                            <a href="https://github.com/Hken27/Analisis-Data-Spotify/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 w-full py-2 border border-white/20 text-white text-[10px] uppercase tracking-wider hover:bg-white hover:text-surface-950 transition-all"><i class="fa-brands fa-github"></i> Github</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-flip-card shrink-0 w-[240px] h-[280px] [perspective:1000px] inline-block whitespace-normal">
-                    <div class="project-card-inner relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] hover:[transform:rotateY(180deg)]">
-                        <div class="project-card-front absolute inset-0 w-full h-full p-6 rounded-lg bg-white/[0.02] border border-white/[0.05] flex flex-col justify-between [backface-visibility:hidden]">
-                            <div>
-                                <div class="flex justify-between items-start mb-4">
-                                    <span class="text-[9px] tracking-[0.2em] uppercase text-surface-500 font-medium">Mini Projek</span>
-                                    <i data-lucide="bot" class="w-4 h-4 text-surface-400"></i>
-                                </div>
-                                <h3 class="font-serif text-lg text-white tracking-wide">RAG Chatbot</h3>
-                            </div>
-                            <div class="flex flex-wrap gap-1 mt-auto">
-                                <span class="px-2 py-0.5 text-[8px] tracking-wider uppercase bg-white/[0.04] text-surface-400 rounded">Dataset</span>
-                                <span class="px-2 py-0.5 text-[8px] tracking-wider uppercase bg-white/[0.04] text-surface-400 rounded">Gemini LLM</span>
-                                <span class="px-2 py-0.5 text-[8px] tracking-wider uppercase bg-white/[0.04] text-surface-400 rounded">Python</span>
-                                <span class="px-2 py-0.5 text-[8px] tracking-wider uppercase bg-white/[0.04] text-surface-400 rounded">RAG</span>
-                                <span class="px-2 py-0.5 text-[8px] tracking-wider uppercase bg-white/[0.04] text-surface-400 rounded">LangChain</span>
-                            </div>
-                        </div>
-                        <div class="project-card-back absolute inset-0 w-full h-full p-6 rounded-lg bg-surface-900 border border-white/[0.1] flex flex-col justify-between [transform:rotateY(180deg)] [backface-visibility:hidden]">
-                            <p class="text-surface-300 text-xs font-light leading-relaxed">Chatbot yang memberikan jawaban akurat seputar sertifikasi halal dengan merujuk langsung pada dokumen regulasi resmi BPJPH untuk menghindari kesalahan informasi.</p>
-                            <a href="https://github.com/Hken27/RAG/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 w-full py-2 border border-white/20 text-white text-[10px] uppercase tracking-wider hover:bg-white hover:text-surface-950 transition-all"><i class="fa-brands fa-github"></i> Github</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-flip-card shrink-0 w-[240px] h-[280px] [perspective:1000px] inline-block whitespace-normal">
-                    <div class="project-card-inner relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] hover:[transform:rotateY(180deg)]">
-                        <div class="project-card-front absolute inset-0 w-full h-full p-6 rounded-lg bg-white/[0.02] border border-white/[0.05] flex flex-col justify-between [backface-visibility:hidden]">
-                            <div>
-                                <div class="flex justify-between items-start mb-4">
-                                    <span class="text-[9px] tracking-[0.2em] uppercase text-surface-500 font-medium">ERP - CRM</span>
-                                    <i data-lucide="layout-dashboard" class="w-4 h-4 text-surface-400"></i>
-                                </div>
-                                <h3 class="font-serif text-lg text-white tracking-wide">ERP | CRM</h3>
-                            </div>
-                            <div class="flex flex-wrap gap-1 mt-auto">
-                                <span class="px-2 py-0.5 text-[8px] tracking-wider uppercase bg-white/[0.04] text-surface-400 rounded">ERP</span>
-                                <span class="px-2 py-0.5 text-[8px] tracking-wider uppercase bg-white/[0.04] text-surface-400 rounded">CRM</span>
-                                <span class="px-2 py-0.5 text-[8px] tracking-wider uppercase bg-white/[0.04] text-surface-400 rounded">MySQL</span>
-                                <span class="px-2 py-0.5 text-[8px] tracking-wider uppercase bg-white/[0.04] text-surface-400 rounded">Laravel</span>
-                                <span class="px-2 py-0.5 text-[8px] tracking-wider uppercase bg-white/[0.04] text-surface-400 rounded">JasperReport</span>
-                            </div>
-                        </div>
-                        <div class="project-card-back absolute inset-0 w-full h-full p-6 rounded-lg bg-surface-900 border border-white/[0.1] flex flex-col justify-between [transform:rotateY(180deg)] [backface-visibility:hidden]">
-                            <p class="text-surface-300 text-xs font-light leading-relaxed">Implementasi sistem manajemen enterprise terintegrasi untuk menangani modul utama, mencakup: Gudang, Penjualan, Pembelian, Akuntansi, Keuangan dan Administrasi di industri ritel dan supermarket.</p>
-                            <a href="https://github.com/Hken27/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 w-full py-2 border border-white/20 text-white text-[10px] uppercase tracking-wider hover:bg-white hover:text-surface-950 transition-all"><i class="fa-brands fa-github"></i> Github</a>
-                        </div>
-                    </div>
-                </div>
-
-                
-            </div>
-        </div>
-
-        <!-- <div class="marquee-container flex whitespace-nowrap w-full">
-            <div class="marquee-track flex gap-6 animate-marquee-right">
-                
-                
-
-            </div>
-        </div> -->
-
-        
-    </section>
-
-    <!-- Interests Section -->
-    <section id="interests" class="py-24 md:py-32 px-6">
-        <div class="section-divider max-w-6xl mx-auto mb-24"></div>
-        <div class="max-w-6xl mx-auto">
-            <div class="grid md:grid-cols-12 gap-12 md:gap-16">
-                <div class="md:col-span-4">
-                    <span class="reveal-item text-xs font-medium tracking-[0.35em] uppercase text-surface-500 block mb-4">05</span>
-                    <h2 class="reveal-item font-serif text-4xl md:text-5xl font-bold text-white">Interests</h2>
-                </div>
-                <div class="md:col-span-8">
-                    <p class="reveal-item text-surface-400 text-lg font-light leading-relaxed mb-10">
-                        Areas of passion and continuous exploration that drive professional growth and innovation.
-                    </p>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="interestsGrid">
-                        <div class="reveal-item interest-pill rounded-xl p-6 bg-white/[0.02] group cursor-default">
-                            <div class="flex items-center gap-4">
-                                <div class="w-12 h-12 rounded-full border border-surface-700 flex items-center justify-center group-hover:border-white group-hover:bg-white/10 transition-all duration-300">
-                                    <i data-lucide="layers" class="w-5 h-5 text-surface-400 group-hover:text-white transition-colors"></i>
-                                </div>
-                                <div>
-                                    <p class="text-white text-base font-medium">Laravel Framework</p>
-                                    <p class="text-surface-600 text-xs mt-0.5">Backend Development</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="reveal-item interest-pill rounded-xl p-6 bg-white/[0.02] group cursor-default">
-                            <div class="flex items-center gap-4">
-                                <div class="w-12 h-12 rounded-full border border-surface-700 flex items-center justify-center group-hover:border-white group-hover:bg-white/10 transition-all duration-300">
-                                    <i data-lucide="box" class="w-5 h-5 text-surface-400 group-hover:text-white transition-colors"></i>
-                                </div>
-                                <div>
-                                    <p class="text-white text-base font-medium">SAP</p>
-                                    <p class="text-surface-600 text-xs mt-0.5">Enterprise Resource Planning</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="reveal-item interest-pill rounded-xl p-6 bg-white/[0.02] group cursor-default">
-                            <div class="flex items-center gap-4">
-                                <div class="w-12 h-12 rounded-full border border-surface-700 flex items-center justify-center group-hover:border-white group-hover:bg-white/10 transition-all duration-300">
-                                    <i data-lucide="app-window" class="w-5 h-5 text-surface-400 group-hover:text-white transition-colors"></i>
-                                </div>
-                                <div>
-                                    <p class="text-white text-base font-medium">Odoo</p>
-                                    <p class="text-surface-600 text-xs mt-0.5">Business Suite Platform</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="reveal-item interest-pill rounded-xl p-6 bg-white/[0.02] group cursor-default">
-                            <div class="flex items-center gap-4">
-                                <div class="w-12 h-12 rounded-full border border-surface-700 flex items-center justify-center group-hover:border-white group-hover:bg-white/10 transition-all duration-300">
-                                    <i data-lucide="sparkles" class="w-5 h-5 text-surface-400 group-hover:text-white transition-colors"></i>
-                                </div>
-                                <div>
-                                    <p class="text-white text-base font-medium">AI Agents</p>
-                                    <p class="text-surface-600 text-xs mt-0.5">Artificial Intelligence</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-16 px-6 border-t border-white/[0.05]">
-        <div class="max-w-6xl mx-auto">
-            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-               
-                <div class="flex items-center gap-6">
-                    <a href="mailto:mmmdwahyudi@gmail.com" class="text-surface-500 hover:text-white transition-colors duration-300" aria-label="Email">
-                        <i class="fa-solid fa-envelope w-5 h-5"></i>
-                    </a>
-                    
-                    <a href="https://www.linkedin.com/in/muhammad-wahyudi-b59429269/" target="_blank" rel="noopener noreferrer" class="text-surface-500 hover:text-white transition-colors duration-300" aria-label="LinkedIn">
-                        <i class="fa-brands fa-linkedin w-5 h-5"></i>
-                    </a>
-                    
-                    <a href="https://github.com/Hken27/" class="text-surface-500 hover:text-white transition-colors duration-300" aria-label="GitHub">
-                        <i class="fa-brands fa-github w-5 h-5"></i>
-                    </a>
-                </div>
-            </div>
-            <!-- <div class="section-divider mt-10 mb-8"></div> -->
+        <div class="hero-content parallax-layer" id="heroContent">
             
+            <h1 class="hero-name" id="heroName">
+                <span class="hero-name-line"><span class="hero-name-inner">MUHAMMAD</span></span>
+                <span class="hero-name-line"><span class="hero-name-inner">WAHYUDI</span></span>
+            </h1>
+            <div class="hero-tagline" id="heroTagline">
+                <div class="hero-tagline-separator"></div>
+                <p class="hero-tagline-text">
+                    <p class="hero-eyebrow" id="heroEyebrow"> IT Business Analyst | System Analyst | Project Management</p>
+                </p>
+            </div>
+            <div class="hero-cta-group" id="heroCta">
+                <a href="#projects" class="btn-ghost">View Projects</a>
+                <a href="#about" class="btn-primary"><span>Explore</span> <i class="fa-solid fa-arrow-down fa-xs"></i></a>
+            </div>
         </div>
-    </footer>
 
-    <!-- Scripts -->
+        <div class="scroll-indicator" id="scrollIndicator">
+            <div class="scroll-line"></div>
+            <span>Scroll</span>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="section-rule reveal"></div>
+        <div class="section-header">
+            <div class="reveal">
+                <span class="section-num">About</span>
+                <h2 class="section-title">WHO<br>I AM</h2>
+            </div>
+        </div>
+        <div class="about-body">
+            <div class="reveal">
+                <p class="about-text-large">
+                    Lulusan Sarjana Teknik Informatika <strong>Universitas Muhammadiyah Malang</strong> dengan pengalaman praktis dalam implementasi sistem ERP dan CRM berbasis Laravel di sektor <strong>Retail dan Supermarket</strong>.
+                </p>
+                <div class="about-tags" style="margin-top:2rem">
+                    <span class="about-tag">Informatics Engineering</span>
+                    <span class="about-tag">IT Business Analyst</span>
+                    <span class="about-tag">System Analyst</span>
+                    <span class="about-tag">Project Management</span>
+                </div>
+            </div>
+            <div class="reveal">
+                <p class="about-text-body">
+                    Terlibat langsung dalam menerapkan siklus <strong>SDLC Agile</strong>; Perantara komunikasi antara Tim <strong>Developer</strong> dan <strong>User</strong> sebagai pengguna akhir; <strong>Observasi alur bisnis</strong> untuk kebutuhan pengguna; Melakukan User Acceptance Testing <strong>UAT</strong> berupa Testing dan Pelatihan berbagai modul bisnis; <strong>Pemeliharaan dan penyelesaian</strong> error atau bug pada sistem.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <div class="section-rule reveal"></div>
+        <div class="section-header">
+            <div class="reveal">
+                <span class="section-num">Experience</span>
+                <h2 class="section-title">CORE<br>EXP.</h2>
+            </div>
+        </div>
+        <div class="exp-container">
+            <div class="exp-item reveal">
+                <div class="exp-meta">
+                    <span class="exp-date">Dec 2025 – Feb 2026</span>
+                    <div class="exp-dot"></div>
+                </div>
+                <div>
+                    <h3 class="exp-title">IT Business Analyst</h3>
+                    <p class="exp-company">CV Satria Dharma Guna — Surabaya</p>
+                    <ul class="exp-bullets">
+                        <li class="exp-bullet">
+                            <i class="fa-solid fa-magnifying-glass exp-bullet-icon"></i>
+                            <div>
+                                <p class="exp-bullet-label">Analisis Kebutuhan & SDLC</p>
+                                <p class="exp-bullet-text">Observasi alur proses bisnis untuk diubah menjadi aplikasi pada modul gudang, administrasi, akuntansi, keuangan dan pembelian.</p>
+                            </div>
+                        </li>
+                        <li class="exp-bullet">
+                            <i class="fa-solid fa-shield-halved exp-bullet-icon"></i>
+                            <div>
+                                <p class="exp-bullet-label">Manajemen User Acceptance Testing UAT</p>
+                                <p class="exp-bullet-text">Melakukan uji coba fitur dengan user pengguna akhir pada 5 modul bisnis.</p>
+                            </div>
+                        </li>
+                        <li class="exp-bullet">
+                            <i class="fa-solid fa-bug exp-bullet-icon"></i>
+                            <div>
+                                <p class="exp-bullet-label">Optimalisasi & Pemeliharaan</p>
+                                <p class="exp-bullet-text">Memastikan kinerja aplikasi tetap stabil dalam operasional sehari-hari dalam 5 modul bisnis.</p>
+                            </div>
+                        </li>
+                        <li class="exp-bullet">
+                            <i class="fa-solid fa-pen-ruler exp-bullet-icon"></i>
+                            <div>
+                                <p class="exp-bullet-label">Pengembangan fitur & UI/UX</p>
+                                <p class="exp-bullet-text">Pembaruan fitur, optimalisasi standarisasi format invoice, dan tampilan menu untuk meningkatkan pengalaman pengguna pada 5 modul bisnis.</p>
+                            </div>
+                        </li>
+                        <li class="exp-bullet">
+                            <i class="fa-solid fa-flag exp-bullet-icon"></i>
+                            <div>
+                                <p class="exp-bullet-label">Launching Program CRM</p>
+                                <p class="exp-bullet-text">Pendampingan pada saat serah terima aplikasi.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="exp-item reveal">
+                <div class="exp-meta">
+                    <span class="exp-date">Jul – Aug 2024</span>
+                    <div class="exp-dot"></div>
+                </div>
+                <div>
+                    <h3 class="exp-title">Software Engineer</h3>
+                    <p class="exp-company">PT Togamas Semesta Abadi — Malang</p>
+                    <ul class="exp-bullets">
+                        <li class="exp-bullet">
+                            <i class="fa-solid fa-code exp-bullet-icon"></i>
+                            <div>
+                                <p class="exp-bullet-label">Software Engineering</p>
+                                <p class="exp-bullet-text">Mendukung integrasi kebutuhan operasional dan solusi teknologi melalui Automation Message; dan Membuat/Memelihara Website: Semilir, Inteligensiamedia, dan Edisimori.</p>
+                            </div>
+                        </li>
+                        <li class="exp-bullet">
+                            <i class="fa-solid fa-calendar-check exp-bullet-icon"></i>
+                            <div>
+                                <p class="exp-bullet-label">Koordinator Proyek</p>
+                                <p class="exp-bullet-text">Mengkoordinasikan kegiatan acara dan memastikan alur kerja berjalan dengan baik.</p>
+                            </div>
+                        </li>
+                        <li class="exp-bullet">
+                            <i class="fa-solid fa-share-nodes exp-bullet-icon"></i>
+                            <div>
+                                <p class="exp-bullet-label">Social Media Management</p>
+                                <p class="exp-bullet-text">Mengelola media sosial untuk meningkatkan brand awareness dan engagement perusahaan.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="section-rule reveal"></div>
+        <div class="section-header">
+            <div class="reveal">
+                <span class="section-num">Skills</span>
+                <h2 class="section-title">WHAT<br>I DO</h2>
+            </div>
+        </div>
+        <div class="skills-container">
+            <p class="skills-subsection-label reveal">// Hard Skills</p>
+            <div class="skills-grid" id="hardSkills">
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fa-solid fa-code"></i></div>
+                    <p class="skill-name">PHP (Laravel) | Python</p>
+                    <p class="skill-type">Programming</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fa-solid fa-globe"></i></div>
+                    <p class="skill-name">HTML5, CSS, JS, React.js</p>
+                    <p class="skill-type">Frontend Development</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fa-solid fa-diagram-project"></i></div>
+                    <p class="skill-name">SDLC | Agile | Business Process Mapping</p>
+                    <p class="skill-type">Analysis & Design</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fa-solid fa-layer-group"></i></div>
+                    <p class="skill-name">Draw.io, Figma, Balsamiq</p>
+                    <p class="skill-type">Wireframe Design</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fa-solid fa-database"></i></div>
+                    <p class="skill-name">MySQL</p>
+                    <p class="skill-type">Database</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fa-solid fa-chart-bar"></i></div>
+                    <p class="skill-name">Tableau | Matplotlib | Seaborn</p>
+                    <p class="skill-type">Visualization</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fa-solid fa-briefcase"></i></div>
+                    <p class="skill-name">ERP Software | Google Workspace | Microsoft Office 365</p>
+                    <p class="skill-type">Productivity Tools</p>
+                </div>
+            </div>
+
+            <p class="skills-subsection-label reveal" style="margin-top:2rem">// Soft Skills & Competencies</p>
+            <div class="soft-skills-wrap reveal" id="softSkills">
+                <span class="soft-pill"><i class="fa-solid fa-shuffle"></i> Adaptability</span>
+                <span class="soft-pill"><i class="fa-solid fa-brain"></i> Analytical Thinking</span>
+                <span class="soft-pill"><i class="fa-solid fa-rotate"></i> Application Lifecycle Management</span>
+                <span class="soft-pill"><i class="fa-solid fa-diagram-project"></i> Business Process Mapping</span>
+                <span class="soft-pill"><i class="fa-solid fa-clipboard-list"></i> Business Requirements</span>
+                <span class="soft-pill"><i class="fa-solid fa-comments"></i> Communication</span>
+                <span class="soft-pill"><i class="fa-solid fa-lightbulb"></i> Problem Solving</span>
+                <span class="soft-pill"><i class="fa-solid fa-briefcase"></i> Project Management</span>
+                <span class="soft-pill"><i class="fa-solid fa-users"></i> Stakeholder Management</span>
+                <span class="soft-pill"><i class="fa-solid fa-handshake"></i> Teamwork & Collaboration</span>
+                <span class="soft-pill"><i class="fa-regular fa-clock"></i> Time Management</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="section-rule reveal"></div>
+        <div class="projects-header reveal">
+            <span class="section-num">Projects</span>
+            <h2 class="section-title" style="font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,6vw,6rem);line-height:0.9;">SELECTED<br>WORK</h2>
+        </div>
+
+        <div class="marquee-wrap" style="margin-bottom:16px">
+            <div class="marquee-track left">
+                <div class="pcard-wrap">
+                    <div class="pcard-inner">
+                        <div class="pcard-front">
+                            <div>
+                                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.8rem">
+                                    <p class="pcard-category">Tugas Akhir Semester</p>
+                                    <span class="pcard-icon"><i class="fa-solid fa-image"></i></span>
+                                </div>
+                                <h3 class="pcard-title">Image Classification</h3>
+                            </div>
+                            <div class="pcard-tags">
+                                <span class="pcard-tag">NLP</span>
+                                <span class="pcard-tag">Machine Learning</span>
+                                <span class="pcard-tag">Computer Vision</span>
+                                <span class="pcard-tag">Kaggle</span>
+                                <span class="pcard-tag">Streamlit</span>
+                            </div>
+                        </div>
+                        <div class="pcard-back">
+                            <p class="pcard-back-desc">Klasifikasi bungkus biskuit menggunakan deep learning dengan pendekatan CNN dan MobileNet. Dataset dari Kaggle, hasil model diintegrasikan ke antarmuka berbasis Streamlit.</p>
+                            <a href="https://github.com/Hken27/image-classification" target="_blank" class="pcard-back-link"><i class="fa-brands fa-github"></i> Github</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="pcard-wrap">
+                    <div class="pcard-inner">
+                        <div class="pcard-front">
+                            <div>
+                                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.8rem">
+                                    <p class="pcard-category">Tugas Akhir Semester</p>
+                                    <span class="pcard-icon"><i class="fa-solid fa-mobile-screen"></i></span>
+                                </div>
+                                <h3 class="pcard-title">Mobile Event Organizer</h3>
+                            </div>
+                            <div class="pcard-tags">
+                                <span class="pcard-tag">Android</span>
+                                <span class="pcard-tag">Flutter</span>
+                                <span class="pcard-tag">Dart</span>
+                            </div>
+                        </div>
+                        <div class="pcard-back">
+                            <p class="pcard-back-desc">EC4EVA: aplikasi Flutter untuk pecinta musik Endless Chain — info event, merchandise eksklusif, serta fitur pembelian dan reservasi yang mudah.</p>
+                            <a href="https://github.com/Hken27/ec4eva/" target="_blank" class="pcard-back-link"><i class="fa-brands fa-github"></i> Github</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="pcard-wrap">
+                    <div class="pcard-inner">
+                        <div class="pcard-front">
+                            <div>
+                                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.8rem">
+                                    <p class="pcard-category">Tugas Akhir Semester</p>
+                                    <span class="pcard-icon"><i class="fa-solid fa-globe"></i></span>
+                                </div>
+                                <h3 class="pcard-title">Web Application Portfolio</h3>
+                            </div>
+                            <div class="pcard-tags">
+                                <span class="pcard-tag">HTML</span>
+                                <span class="pcard-tag">CSS</span>
+                                <span class="pcard-tag">JavaScript</span>
+                            </div>
+                        </div>
+                        <div class="pcard-back">
+                            <p class="pcard-back-desc">Portofolio profesional menampilkan proyek studio kreatif dan layanan pengembangan. Visual modern dengan informasi lengkap untuk pelaku industri kreatif dan teknologi.</p>
+                            <a href="https://hken27.github.io/studiosuckss/" target="_blank" class="pcard-back-link"><i class="fa-brands fa-github"></i> Github</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="pcard-wrap">
+                    <div class="pcard-inner">
+                        <div class="pcard-front">
+                            <div>
+                                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.8rem">
+                                    <p class="pcard-category">Tugas Akhir Semester</p>
+                                    <span class="pcard-icon"><i class="fa-solid fa-chart-bar"></i></span>
+                                </div>
+                                <h3 class="pcard-title">Spotify Data Analysis</h3>
+                            </div>
+                            <div class="pcard-tags">
+                                <span class="pcard-tag">Data Analyst</span>
+                                <span class="pcard-tag">Python</span>
+                                <span class="pcard-tag">Kaggle</span>
+                            </div>
+                        </div>
+                        <div class="pcard-back">
+                            <p class="pcard-back-desc">Analisis mendalam preferensi musik pengguna Spotify untuk memberikan wawasan yang meningkatkan akurasi rekomendasi dan loyalitas pengguna platform.</p>
+                            <a href="https://github.com/Hken27/Analisis-Data-Spotify/" target="_blank" class="pcard-back-link"><i class="fa-brands fa-github"></i> Github</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="pcard-wrap">
+                    <div class="pcard-inner">
+                        <div class="pcard-front">
+                            <div>
+                                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.8rem">
+                                    <p class="pcard-category">Mini Projek</p>
+                                    <span class="pcard-icon"><i class="fa-solid fa-robot"></i></span>
+                                </div>
+                                <h3 class="pcard-title">RAG Chatbot</h3>
+                            </div>
+                            <div class="pcard-tags">
+                                <span class="pcard-tag">Dataset</span>
+                                <span class="pcard-tag">Gemini LLM</span>
+                                <span class="pcard-tag">Python</span>
+                                <span class="pcard-tag">RAG</span>
+                                <span class="pcard-tag">LangChain</span>
+                            </div>
+                        </div>
+                        <div class="pcard-back">
+                            <p class="pcard-back-desc">Chatbot akurat seputar sertifikasi halal — merujuk langsung pada dokumen regulasi resmi BPJPH untuk menghindari kesalahan informasi.</p>
+                            <a href="https://github.com/Hken27/RAG" target="_blank" class="pcard-back-link"><i class="fa-brands fa-github"></i> Github</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="pcard-wrap">
+                    <div class="pcard-inner">
+                        <div class="pcard-front">
+                            <div>
+                                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.8rem">
+                                    <p class="pcard-category">ERP – CRM</p>
+                                    <span class="pcard-icon"><i class="fa-solid fa-table-columns"></i></span>
+                                </div>
+                                <h3 class="pcard-title">ERP | CRM</h3>
+                            </div>
+                            <div class="pcard-tags">
+                                <span class="pcard-tag">ERP</span>
+                                <span class="pcard-tag">CRM</span>
+                                <span class="pcard-tag">MySQL</span>
+                                <span class="pcard-tag">Laravel</span>
+                                <span class="pcard-tag">JasperReport</span>
+                            </div>
+                        </div>
+                        <div class="pcard-back">
+                            <p class="pcard-back-desc">Implementasi sistem manajemen enterprise terintegrasi: Gudang, Penjualan, Pembelian, Akuntansi, Keuangan & Administrasi di industri ritel dan supermarket.</p>
+                            <a href="#" target="_blank" class="pcard-back-link"><i class="fa-brands fa-google-drive"></i> View</a>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="pcard-wrap">
+                    <div class="pcard-inner">
+                        <div class="pcard-front">
+                            <div>
+                                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.8rem">
+                                    <p class="pcard-category">Tugas Akhir Semester</p>
+                                    <span class="pcard-icon"><i class="fa-solid fa-image"></i></span>
+                                </div>
+                                <h3 class="pcard-title">Image Classification</h3>
+                            </div>
+                            <div class="pcard-tags">
+                                <span class="pcard-tag">NLP</span>
+                                <span class="pcard-tag">Machine Learning</span>
+                                <span class="pcard-tag">Computer Vision</span>
+                                <span class="pcard-tag">Kaggle</span>
+                                <span class="pcard-tag">Streamlit</span>
+                            </div>
+                        </div>
+                        <div class="pcard-back">
+                            <p class="pcard-back-desc">Klasifikasi bungkus biskuit menggunakan deep learning dengan pendekatan CNN dan MobileNet. Dataset dari Kaggle, hasil model diintegrasikan ke antarmuka berbasis Streamlit.</p>
+                            <a href="https://github.com/Hken27/image-classification" target="_blank" class="pcard-back-link"><i class="fa-brands fa-github"></i> Github</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="pcard-wrap">
+                    <div class="pcard-inner">
+                        <div class="pcard-front">
+                            <div>
+                                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.8rem">
+                                    <p class="pcard-category">Tugas Akhir Semester</p>
+                                    <span class="pcard-icon"><i class="fa-solid fa-mobile-screen"></i></span>
+                                </div>
+                                <h3 class="pcard-title">Mobile Event Organizer</h3>
+                            </div>
+                            <div class="pcard-tags">
+                                <span class="pcard-tag">Android</span>
+                                <span class="pcard-tag">Flutter</span>
+                                <span class="pcard-tag">Dart</span>
+                            </div>
+                        </div>
+                        <div class="pcard-back">
+                            <p class="pcard-back-desc">EC4EVA: aplikasi Flutter untuk pecinta musik Endless Chain — info event, merchandise eksklusif, serta fitur pembelian dan reservasi yang mudah.</p>
+                            <a href="https://github.com/Hken27/ec4eva/" target="_blank" class="pcard-back-link"><i class="fa-brands fa-github"></i> Github</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="pcard-wrap">
+                    <div class="pcard-inner">
+                        <div class="pcard-front">
+                            <div>
+                                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.8rem">
+                                    <p class="pcard-category">Tugas Akhir Semester</p>
+                                    <span class="pcard-icon"><i class="fa-solid fa-globe"></i></span>
+                                </div>
+                                <h3 class="pcard-title">Web Application Portfolio</h3>
+                            </div>
+                            <div class="pcard-tags">
+                                <span class="pcard-tag">HTML</span>
+                                <span class="pcard-tag">CSS</span>
+                                <span class="pcard-tag">JavaScript</span>
+                            </div>
+                        </div>
+                        <div class="pcard-back">
+                            <p class="pcard-back-desc">Portofolio profesional menampilkan proyek studio kreatif dan layanan pengembangan. Visual modern dengan informasi lengkap untuk pelaku industri kreatif dan teknologi.</p>
+                            <a href="https://hken27.github.io/studiosuckss/" target="_blank" class="pcard-back-link"><i class="fa-brands fa-github"></i> Github</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="pcard-wrap">
+                    <div class="pcard-inner">
+                        <div class="pcard-front">
+                            <div>
+                                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.8rem">
+                                    <p class="pcard-category">Tugas Akhir Semester</p>
+                                    <span class="pcard-icon"><i class="fa-solid fa-chart-bar"></i></span>
+                                </div>
+                                <h3 class="pcard-title">Spotify Data Analysis</h3>
+                            </div>
+                            <div class="pcard-tags">
+                                <span class="pcard-tag">Data Analyst</span>
+                                <span class="pcard-tag">Python</span>
+                                <span class="pcard-tag">Kaggle</span>
+                            </div>
+                        </div>
+                        <div class="pcard-back">
+                            <p class="pcard-back-desc">Analisis mendalam preferensi musik pengguna Spotify untuk memberikan wawasan yang meningkatkan akurasi rekomendasi dan loyalitas pengguna platform.</p>
+                            <a href="https://github.com/Hken27/Analisis-Data-Spotify/" target="_blank" class="pcard-back-link"><i class="fa-brands fa-github"></i> Github</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="pcard-wrap">
+                    <div class="pcard-inner">
+                        <div class="pcard-front">
+                            <div>
+                                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.8rem">
+                                    <p class="pcard-category">Mini Projek</p>
+                                    <span class="pcard-icon"><i class="fa-solid fa-robot"></i></span>
+                                </div>
+                                <h3 class="pcard-title">RAG Chatbot</h3>
+                            </div>
+                            <div class="pcard-tags">
+                                <span class="pcard-tag">Dataset</span>
+                                <span class="pcard-tag">Gemini LLM</span>
+                                <span class="pcard-tag">Python</span>
+                                <span class="pcard-tag">RAG</span>
+                                <span class="pcard-tag">LangChain</span>
+                            </div>
+                        </div>
+                        <div class="pcard-back">
+                            <p class="pcard-back-desc">Chatbot akurat seputar sertifikasi halal — merujuk langsung pada dokumen regulasi resmi BPJPH untuk menghindari kesalahan informasi.</p>
+                            <a href="https://github.com/Hken27/RAG" target="_blank" class="pcard-back-link"><i class="fa-brands fa-github"></i> Github</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="pcard-wrap">
+                    <div class="pcard-inner">
+                        <div class="pcard-front">
+                            <div>
+                                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.8rem">
+                                    <p class="pcard-category">ERP – CRM</p>
+                                    <span class="pcard-icon"><i class="fa-solid fa-table-columns"></i></span>
+                                </div>
+                                <h3 class="pcard-title">ERP | CRM</h3>
+                            </div>
+                            <div class="pcard-tags">
+                                <span class="pcard-tag">ERP</span>
+                                <span class="pcard-tag">CRM</span>
+                                <span class="pcard-tag">MySQL</span>
+                                <span class="pcard-tag">Laravel</span>
+                                <span class="pcard-tag">JasperReport</span>
+                            </div>
+                        </div>
+                        <div class="pcard-back">
+                            <p class="pcard-back-desc">Implementasi sistem manajemen enterprise terintegrasi: Gudang, Penjualan, Pembelian, Akuntansi, Keuangan & Administrasi di industri ritel dan supermarket.</p>
+                            <a href="#" target="_blank" class="pcard-back-link"><i class="fa-brands fa-google-drive"></i> View</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="interests">
+        <div class="section-rule reveal"></div>
+        <div class="section-header">
+            <div class="reveal">
+                <span class="section-num">Interests</span>
+                <h2 class="section-title">PASSION<br>AREAS</h2>
+            </div>
+            <div class="reveal" style="padding-top:3rem">
+                <p style="font-size:0.9rem;font-weight:300;color:var(--grey-light);line-height:1.8;max-width:460px">
+                    Areas of passion and continuous exploration that drive professional growth and innovation.
+                </p>
+            </div>
+        </div>
+        <div class="interests-container reveal">
+            <div class="interest-card">
+                <div class="interest-icon-wrap"><i class="fa-solid fa-layer-group"></i></div>
+                <div>
+                    <p class="interest-name">Laravel Framework</p>
+                    <p class="interest-sub">Backend Development</p>
+                </div>
+            </div>
+            <div class="interest-card">
+                <div class="interest-icon-wrap"><i class="fa-solid fa-box"></i></div>
+                <div>
+                    <p class="interest-name">SAP</p>
+                    <p class="interest-sub">Enterprise Resource Planning</p>
+                </div>
+            </div>
+            <div class="interest-card">
+                <div class="interest-icon-wrap"><i class="fa-solid fa-app-indicator"></i></div>
+                <div>
+                    <p class="interest-name">Odoo</p>
+                    <p class="interest-sub">Business Suite Platform</p>
+                </div>
+            </div>
+            <div class="interest-card">
+                <div class="interest-icon-wrap"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                <div>
+                    <p class="interest-name">AI Agents</p>
+                    <p class="interest-sub">Artificial Intelligence</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="javascript.js"></script>
- </body>
+</body>
 </html>
