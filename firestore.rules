@@ -1,0 +1,43 @@
+
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /stats/portfolio {
+
+      // Statistik boleh dibaca oleh pengunjung.
+      allow read: if true;
+
+      // Dokumen hanya boleh dibuat dengan nilai awal yang benar.
+      allow create: if
+        request.resource.data.keys().hasOnly([
+          'totalViews',
+          'lastVisited'
+        ])
+        &&
+        request.resource.data.totalViews == 1
+        &&
+        request.resource.data.lastVisited == request.time;
+
+      // Setiap update hanya boleh menaikkan totalViews satu angka.
+      allow update: if
+        request.resource.data.keys().hasOnly([
+          'totalViews',
+          'lastVisited'
+        ])
+        &&
+        request.resource.data.totalViews ==
+          resource.data.totalViews + 1
+        &&
+        request.resource.data.lastVisited == request.time
+        &&
+        request.resource.data.diff(resource.data)
+          .affectedKeys()
+          .hasOnly(['totalViews', 'lastVisited']);
+
+      // Penghapusan statistik tidak diizinkan.
+      allow delete: if false;
+    }
+  }
+}

@@ -1,0 +1,12 @@
+
+# Firebase local configuration
+firebase-config.js
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Local development files
+.DS_Store
+Thumbs.db
