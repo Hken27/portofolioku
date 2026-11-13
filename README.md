@@ -1,11 +1,9 @@
 # 🔥 Firebase Integration
 
-Firebase digunakan sebagai backend untuk mendukung fitur statistik pengunjung pada website, meliputi:
+Integrasi Firebase untuk mengelola statistik pengunjung website, termasuk total kunjungan dan waktu kunjungan terakhir. Untuk informasi lebih lanjut, kunjungi [Dokumentasi Firebase](https://firebase.google.com/docs/web/setup)
 
 - **Total Views:** mencatat jumlah kunjungan website.
 - **Last Visited:** menampilkan informasi waktu kunjungan terakhir.
-
-Integrasi Firebase membantu menyimpan dan mengelola data statistik pengunjung secara online.
 
 ## 🚀 Getting Started
 
