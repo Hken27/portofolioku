@@ -1407,3 +1407,743 @@
         font-size: 0.6rem;
         color: rgba(245, 245, 240, 0.2);
     }
+
+/* HERO RESPONSIVE REFINEMENTS */
+.hero-social-strip {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+}
+
+.hero-social-line {
+    display: block;
+    width: 28px;
+    height: 1px;
+    background: rgba(245, 245, 240, 0.25);
+}
+
+.hero-tagline-text {
+    max-width: none;
+}
+
+.hero-eyebrow {
+    margin: 0;
+    line-height: 1.7;
+    white-space: normal;
+    text-wrap: balance;
+}
+
+.hero-cta-group {
+    display: grid;
+    grid-template-columns: auto minmax(310px, 390px);
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.hero-cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+}
+
+.visitor-stats {
+    width: 100%;
+    min-width: 0;
+    margin-left: 0;
+}
+
+@media screen and (max-width: 768px) {
+    #hero {
+        min-height: 100svh;
+        padding: 7rem 1.5rem 3rem;
+        align-items: flex-end;
+    }
+
+    .hero-social-strip {
+        display: flex;
+        position: absolute;
+        top: 2rem;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        width: max-content;
+        max-width: calc(100% - 3rem);
+        gap: 1.2rem;
+    }
+
+    .hero-social-strip a {
+        font-size: 1rem;
+    }
+
+    .hero-social-line {
+        width: 18px;
+    }
+
+    .hero-cta-group {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1.25rem;
+        margin-top: 2rem;
+    }
+
+    .hero-cta-actions {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.75rem;
+        width: 100%;
+    }
+
+    .hero-cta-actions .btn-ghost,
+    .hero-cta-actions .btn-primary {
+        justify-content: center;
+        width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+        padding: 0.9rem 0.65rem;
+        text-align: center;
+        white-space: nowrap;
+        letter-spacing: 0.1em;
+    }
+
+    .visitor-stats {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr);
+        align-items: center;
+        gap: 0.8rem;
+        padding: 1rem;
+    }
+
+    .visitor-stat-divider {
+        width: 1px;
+        height: 42px;
+    }
+
+    .visitor-stat-item {
+        width: auto;
+    }
+
+    .visitor-last-visited {
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #hero {
+        padding-left: 1.1rem;
+        padding-right: 1.1rem;
+        padding-bottom: 2rem;
+    }
+
+    .hero-social-strip {
+        gap: 1rem;
+    }
+
+    .hero-social-line {
+        width: 12px;
+    }
+
+    .hero-tagline {
+        margin-top: 1.5rem;
+        gap: 0.65rem;
+    }
+
+    .hero-tagline-separator {
+        width: 24px;
+    }
+
+    .hero-eyebrow {
+        font-size: clamp(0.58rem, 2.7vw, 0.7rem);
+        letter-spacing: 0.045em;
+        line-height: 1.8;
+    }
+
+    .hero-cta-actions {
+        gap: 0.6rem;
+    }
+
+    .hero-cta-actions .btn-ghost,
+    .hero-cta-actions .btn-primary {
+        font-size: 0.58rem;
+        padding: 0.85rem 0.4rem;
+    }
+
+    .visitor-stats {
+        gap: 0.55rem;
+        padding: 0.85rem 0.7rem;
+    }
+
+    .visitor-stat-label {
+        font-size: 7px;
+        letter-spacing: 1px;
+    }
+
+    .visitor-stat-value {
+        font-size: 1.2rem;
+    }
+
+    .visitor-last-visited {
+        font-size: 0.68rem;
+    }
+
+    .visitor-stat-description {
+        font-size: 0.58rem;
+    }
+}
+
+/* HERO MOBILE FIX: keep social icons clear of the fixed navigation */
+@media screen and (max-width: 768px) {
+    .hero-social-strip {
+        top: 5.35rem;
+        z-index: 20;
+        gap: 1rem;
+        max-width: calc(100% - 2.5rem);
+    }
+
+    .hero-social-strip a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 24px;
+        min-height: 28px;
+        font-size: 1.05rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .hero-social-strip {
+        top: 5.25rem;
+        gap: 0.9rem;
+    }
+
+    .hero-social-line {
+        width: 10px;
+    }
+
+    .hero-name {
+        font-size: clamp(3.6rem, 18vw, 4.5rem);
+        letter-spacing: -0.015em;
+    }
+
+    .hero-name-line {
+        max-width: 100%;
+    }
+}
+
+
+/* =========================================================
+   FINAL HERO RESPONSIVE SYSTEM
+   Desktop / Laptop / Tablet / Mobile
+   Only affects the hero section and its immediate elements.
+========================================================= */
+
+/* Large desktop */
+@media screen and (min-width: 1201px) {
+    #hero {
+        min-height: 100svh;
+        padding: 0 clamp(4rem, 6vw, 7rem) 4rem;
+    }
+
+    .hero-content {
+        max-width: 1500px;
+        margin-inline: auto;
+    }
+
+    .hero-name {
+        font-size: clamp(7rem, 13vw, 15rem);
+    }
+
+    .hero-cta-group {
+        grid-template-columns: minmax(0, 1fr) minmax(310px, 390px);
+        gap: clamp(1.5rem, 3vw, 3rem);
+    }
+
+    .hero-cta-actions {
+        flex-wrap: nowrap;
+    }
+}
+
+/* Laptop and compact desktop */
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+    #hero {
+        min-height: 100svh;
+        padding: 0 4vw 3.25rem;
+    }
+
+    .hero-social-strip {
+        top: 5.75rem;
+        left: 2rem;
+        z-index: 20;
+        gap: 1rem;
+    }
+
+    .hero-year {
+        top: 6rem;
+        right: 2rem;
+    }
+
+    .hero-content {
+        width: 100%;
+    }
+
+    .hero-name {
+        font-size: clamp(5.5rem, 12vw, 9.5rem);
+    }
+
+    .hero-tagline {
+        margin-top: 1.75rem;
+    }
+
+    .hero-eyebrow {
+        font-size: clamp(0.65rem, 1.1vw, 0.78rem);
+        letter-spacing: 0.06em;
+    }
+
+    .hero-cta-group {
+        grid-template-columns: minmax(0, 1fr) minmax(280px, 340px);
+        gap: 1.25rem;
+        margin-top: 2.25rem;
+    }
+
+    .hero-cta-actions {
+        gap: 0.75rem;
+        flex-wrap: nowrap;
+    }
+
+    .hero-cta-actions .btn-ghost,
+    .hero-cta-actions .btn-primary {
+        padding: 0.85rem 1.15rem;
+        white-space: nowrap;
+    }
+
+    .visitor-stats {
+        padding: 1rem 1.1rem;
+        gap: 0.85rem;
+    }
+
+    .visitor-stat-value {
+        font-size: 1.35rem;
+    }
+
+    .visitor-last-visited {
+        font-size: 0.72rem;
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+}
+
+/* Tablet */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    #hero {
+        min-height: 100svh;
+        padding: 8.75rem 2rem 3rem;
+        align-items: center;
+    }
+
+    .hero-social-strip {
+        position: absolute;
+        top: 5.25rem;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        z-index: 30;
+        display: flex;
+        width: max-content;
+        max-width: calc(100% - 3rem);
+        justify-content: center;
+        gap: clamp(1rem, 3vw, 1.5rem);
+    }
+
+    .hero-social-strip a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 30px;
+        min-height: 32px;
+        font-size: 1.1rem;
+    }
+
+    .hero-social-line {
+        width: 18px;
+        flex: 0 0 18px;
+    }
+
+    .hero-year {
+        display: none;
+    }
+
+    .hero-content {
+        width: 100%;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+
+    .hero-name {
+        font-size: clamp(5rem, 14vw, 7.5rem);
+    }
+
+    .hero-tagline {
+        margin-top: 1.75rem;
+        gap: 0.75rem;
+    }
+
+    .hero-tagline-separator {
+        width: 32px;
+    }
+
+    .hero-eyebrow {
+        font-size: clamp(0.65rem, 1.8vw, 0.78rem);
+        line-height: 1.75;
+        letter-spacing: 0.06em;
+    }
+
+    .hero-cta-group {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1.25rem;
+        margin-top: 2rem;
+    }
+
+    .hero-cta-actions {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        width: 100%;
+        gap: 0.85rem;
+    }
+
+    .hero-cta-actions .btn-ghost,
+    .hero-cta-actions .btn-primary {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+        padding: 0.95rem 0.75rem;
+        font-size: 0.7rem;
+        white-space: nowrap;
+    }
+
+    .visitor-stats {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr);
+        width: 100%;
+        min-width: 0;
+        margin: 0;
+        padding: 1rem 1.15rem;
+        gap: 1rem;
+    }
+
+    .visitor-stat-divider {
+        width: 1px;
+        height: 44px;
+    }
+
+    .visitor-stat-item {
+        min-width: 0;
+    }
+
+    .visitor-last-visited {
+        font-size: 0.8rem;
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+
+    .scroll-indicator {
+        display: none;
+    }
+}
+
+/* Mobile */
+@media screen and (max-width: 480px) {
+    #hero {
+        min-height: 100svh;
+        padding: 8.5rem 1.15rem 2.25rem;
+        align-items: center;
+    }
+
+    .hero-social-strip {
+        position: absolute;
+        top: 5.15rem;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        z-index: 30;
+        display: flex;
+        width: max-content;
+        max-width: calc(100% - 2.3rem);
+        justify-content: center;
+        gap: clamp(0.75rem, 4vw, 1rem);
+    }
+
+    .hero-social-strip a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 28px;
+        min-height: 30px;
+        font-size: 1rem;
+    }
+
+    .hero-social-line {
+        width: 10px;
+        flex: 0 0 10px;
+    }
+
+    .hero-year,
+    .scroll-indicator {
+        display: none;
+    }
+
+    .hero-content {
+        width: 100%;
+        margin-block: auto;
+    }
+
+    .hero-name {
+        font-size: clamp(3.35rem, 17.5vw, 4.7rem);
+        line-height: 0.9;
+        letter-spacing: -0.02em;
+    }
+
+    .hero-name-line {
+        max-width: 100%;
+    }
+
+    .hero-tagline {
+        margin-top: 1.4rem;
+        gap: 0.6rem;
+        align-items: flex-start;
+    }
+
+    .hero-tagline-separator {
+        width: 18px;
+        margin-top: 0.65em;
+        flex: 0 0 18px;
+    }
+
+    .hero-tagline-text {
+        min-width: 0;
+        max-width: none;
+    }
+
+    .hero-eyebrow {
+        font-size: clamp(0.57rem, 2.65vw, 0.68rem);
+        line-height: 1.75;
+        letter-spacing: 0.035em;
+        overflow-wrap: anywhere;
+    }
+
+    .hero-cta-group {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1rem;
+        width: 100%;
+        margin-top: 1.65rem;
+    }
+
+    .hero-cta-actions {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.55rem;
+        width: 100%;
+    }
+
+    .hero-cta-actions .btn-ghost,
+    .hero-cta-actions .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        min-width: 0;
+        min-height: 44px;
+        box-sizing: border-box;
+        padding: 0.75rem 0.35rem;
+        font-size: clamp(0.52rem, 2.25vw, 0.62rem);
+        letter-spacing: 0.06em;
+        white-space: nowrap;
+    }
+
+    .visitor-stats {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr);
+        align-items: center;
+        width: 100%;
+        min-width: 0;
+        margin: 0;
+        padding: 0.85rem 0.7rem;
+        gap: 0.55rem;
+    }
+
+    .visitor-stat-item {
+        min-width: 0;
+        gap: 0.35rem;
+    }
+
+    .visitor-stat-divider {
+        width: 1px;
+        height: 40px;
+    }
+
+    .visitor-stat-label {
+        font-size: 0.42rem;
+        letter-spacing: 0.07em;
+    }
+
+    .visitor-stat-value {
+        font-size: clamp(1.05rem, 5vw, 1.3rem);
+        line-height: 1.15;
+    }
+
+    .visitor-last-visited {
+        font-size: clamp(0.58rem, 2.5vw, 0.7rem);
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+
+    .visitor-stat-description {
+        font-size: 0.5rem;
+        line-height: 1.4;
+    }
+}
+
+/* Very narrow phones */
+@media screen and (max-width: 350px) {
+    #hero {
+        padding-left: 0.9rem;
+        padding-right: 0.9rem;
+    }
+
+    .hero-name {
+        font-size: clamp(3rem, 16.8vw, 3.6rem);
+    }
+
+    .hero-social-strip {
+        gap: 0.65rem;
+    }
+
+    .hero-social-line {
+        width: 7px;
+        flex-basis: 7px;
+    }
+
+    .hero-cta-actions {
+        gap: 0.4rem;
+    }
+
+    .hero-cta-actions .btn-ghost,
+    .hero-cta-actions .btn-primary {
+        font-size: 0.5rem;
+        padding-inline: 0.2rem;
+    }
+
+    .visitor-stats {
+        padding-inline: 0.55rem;
+        gap: 0.4rem;
+    }
+}
+
+
+/* MOBILE SOCIAL ICONS: place a dedicated row directly after visitor stats.
+   Tablet and desktop retain the original hero social strip placement. */
+@media screen and (max-width: 480px) {
+    #hero > .hero-social-strip {
+        display: none !important;
+    }
+
+    #hero .hero-content > .hero-social-strip-mobile {
+        display: flex !important;
+        position: relative !important;
+        inset: auto !important;
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+        bottom: auto !important;
+        transform: none !important;
+        width: 100%;
+        max-width: 100%;
+        justify-content: center;
+        align-items: center;
+        gap: clamp(1rem, 5vw, 1.5rem);
+        margin: 1.35rem auto 0;
+        padding: 0.25rem 0 0.5rem;
+        z-index: 15;
+    }
+
+    #hero .hero-social-strip-mobile a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 32px;
+        min-height: 32px;
+        font-size: 1.05rem;
+    }
+
+    #hero .hero-social-strip-mobile .hero-social-line {
+        display: block;
+        width: 14px;
+        flex: 0 0 14px;
+    }
+}
+
+@media screen and (min-width: 481px) {
+    #hero .hero-social-strip-mobile {
+        display: none !important;
+    }
+}
+
+
+/* RESTORE ORIGINAL SIDE-BY-SIDE VERTICAL SOCIAL ICONS
+   Desktop, laptop and tablet: one icon per row.
+   Mobile keeps its separate row below visitor statistics. */
+@media screen and (min-width: 481px) {
+    #hero > .hero-social-strip {
+        display: flex !important;
+        position: absolute !important;
+        top: 50% !important;
+        left: clamp(1.25rem, 3vw, 3rem) !important;
+        right: auto !important;
+        bottom: auto !important;
+        transform: translateY(-50%) !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: clamp(0.85rem, 1.5vw, 1.25rem) !important;
+        width: auto !important;
+        max-width: none !important;
+        z-index: 25 !important;
+    }
+
+    #hero > .hero-social-strip a {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        min-width: 32px;
+        min-height: 32px;
+        font-size: clamp(0.9rem, 1.2vw, 1.05rem);
+    }
+
+    #hero > .hero-social-strip .hero-social-line {
+        display: block !important;
+        width: 1px !important;
+        height: clamp(14px, 2vh, 22px) !important;
+        flex: 0 0 auto !important;
+    }
+
+    #hero .hero-content > .hero-social-strip-mobile {
+        display: none !important;
+    }
+}
+
+/* Keep the mobile social row after visitor stats only. */
+@media screen and (max-width: 480px) {
+    #hero > .hero-social-strip {
+        display: none !important;
+    }
+
+    #hero .hero-content > .hero-social-strip-mobile {
+        display: flex !important;
+    }
+}
