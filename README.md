@@ -12,15 +12,11 @@ Integrasi Firebase membantu menyimpan dan mengelola data statistik pengunjung se
 1. Clone repository:
 
    ```bash
-   git clone https://github.com/USERNAME/REPOSITORY.git
+   git clone https://github.com/Hken27/portofolioku.git
    ```
 
-2. Masuk ke folder project.
-3. Jalankan `index.html` melalui browser atau gunakan Live Server di VS Code.
-4. Sesuaikan konfigurasi Firebase dengan project Firebase milik sendiri jika diperlukan.
+2. Makkjruengg... 
 
 ---
 
 **Developed by Muhammad Wahyudi**
-
-*IT Business Analyst | System Analyst | Project Management*
